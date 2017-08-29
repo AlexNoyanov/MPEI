@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <NSURLSessionDelegate>
-
+@interface ViewController : UIViewController <NSURLSessionDelegate, UIWebViewDelegate>
+{
+    BOOL _shouldParse;
+}
 @property (weak, nonatomic) IBOutlet UITextField *editGroup;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
@@ -17,11 +19,19 @@
 @property (strong, nonatomic) NSURLSessionConfiguration *configuration;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSString *groupId;
+@property (strong, nonatomic) NSString *html;
 
 
-
+// button handling
 - (IBAction)onLoadTimeTablePressed:(id)sender;
 - (IBAction)onUpdateGroupPressed:(id)sender;
+
+
+//NSURLSessionDelegate
+// no function defined
+
+// UIWebViewDelegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView;
 
 @end
 
