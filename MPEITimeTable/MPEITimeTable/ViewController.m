@@ -19,9 +19,6 @@
     [super viewDidLoad];
     NSString* groupName = [self loadGroupName];
     self.editGroup.text = groupName;
-    NSURL *url = [NSURL URLWithString:@"https://mpei.ru/Education/timetable/Pages/default.aspx"];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [self.webView loadRequest:requestObj];
     self.webView.delegate = self;
 }
 
@@ -50,7 +47,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     [self saveGroupName:groupName];
-    [self loadGroup:groupId];
+    [self loadGroupById:groupId];
 }
 
 - (IBAction)onUpdateGroupPressed:(id)sender
@@ -59,6 +56,11 @@
 //    jsStat = @"document.getElementById('aspnetForm').click()";
 //    NSString* res = [self.webView stringByEvaluatingJavaScriptFromString:jsStat];
 //    NSLog(@"res=%@", res);
+//    _shouldProcess = YES;
+//    NSURL *url = [NSURL URLWithString:@"https://mpei.ru/Education/timetable/Pages/default.aspx"];
+//    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+//    [self.webView loadRequest:requestObj];
+    [self loadGroupByName:self.editGroup.text];
 }
 
 - (NSString*) getPostScript:(NSString*)html
@@ -77,7 +79,7 @@
     return nil;
 }
 
-- (void) loadGroup:(NSString*)groupId
+- (void) loadGroupById:(NSString*)groupId
 {
     self.groupId = groupId;
 
@@ -129,6 +131,24 @@
     }];
     
     [postDataTask0 resume];
+}
+
+- (void) loadGroupByName:(NSString*)groupName
+{
+    self.groupName = groupName;
+    
+    // 1. send GET to receiver the page
+    _shouldParse = YES;
+    if(self.configuration == nil) {
+        self.configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    }
+    self.session = [NSURLSession sessionWithConfiguration:self.configuration delegate:self delegateQueue:nil];
+    
+    NSString* link = [[NSString stringWithFormat:@"https://mpei.ru/Education/timetable/Pages/default.aspx?group=%@", groupName] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    NSURL* url0 = [NSURL URLWithString:link];
+    NSURLRequest *request0 = [NSURLRequest requestWithURL:url0];
+    [self.webView loadRequest:request0];
+    return;
 }
 
 - (NSString*) extractValue:(NSString*)name fromString:(NSString*)html
@@ -357,6 +377,11 @@
 //        }
 //    }
     _shouldParse = NO;
+    
+    if(_shouldProcess) {
+        [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('myGroup').value = '%@'", self.editGroup.text]];
+        _shouldProcess = NO;
+    }
     //after code when webview finishes
     //NSLog(@"Webview loding finished\nyourHTMLSourceCodeString=%@", yourHTMLSourceCodeString);
 }
