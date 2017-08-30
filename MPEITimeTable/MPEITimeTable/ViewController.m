@@ -19,9 +19,8 @@
     [super viewDidLoad];
     NSString* groupName = [self loadGroupName];
     self.editGroup.text = groupName;
-    NSURL *url = [NSURL URLWithString:@"https://mpei.ru/Education/timetable/Pages/default.aspx"];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [self.webView loadRequest:requestObj];
+    self.webView.delegate = self;
+    [self loadHtmlFromGroupNameFile];
 }
 
 
@@ -49,17 +48,44 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     [self saveGroupName:groupName];
-    [self loadGroup:groupId];
+    [self loadGroupById:groupId];
 }
 
-- (IBAction)onUpdateGroupPressed:(id)sender {
+- (IBAction)onUpdateGroupPressed:(id)sender
+{
+//    NSString *jsStat = @"document.getElementsByName('aspnetForm')[0].click()";
+//    jsStat = @"document.getElementById('aspnetForm').click()";
+//    NSString* res = [self.webView stringByEvaluatingJavaScriptFromString:jsStat];
+//    NSLog(@"res=%@", res);
+//    _shouldProcess = YES;
+//    NSURL *url = [NSURL URLWithString:@"https://mpei.ru/Education/timetable/Pages/default.aspx"];
+//    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+//    [self.webView loadRequest:requestObj];
+    [self loadGroupByName:self.editGroup.text];
 }
 
-- (void) loadGroup:(NSString*)groupId
+- (NSString*) getPostScript:(NSString*)html
+{
+    NSInteger begin = [html rangeOfString:@":__doPostBack("].location;
+    if(begin != NSNotFound) {
+        begin++;
+        NSInteger end = [html rangeOfString:@"\"" options:0 range:NSMakeRange(begin, html.length-begin)].location;
+        if(end != NSNotFound) {
+            if(end != NSNotFound) {
+                NSString* value = [html substringWithRange:NSMakeRange(begin, end-begin)];
+                return value;
+            }
+        }
+    }
+    return nil;
+}
+
+- (void) loadGroupById:(NSString*)groupId
 {
     self.groupId = groupId;
 
     // 1. send GET to receiver the page
+    _shouldParse = YES;
     if(self.configuration == nil) {
         self.configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     }
@@ -81,10 +107,11 @@
             NSString* viewstate  = [self extractValue:@"__VIEWSTATE" fromString:html];
             NSString* viewgenerator = [self extractValue:@"__VIEWSTATEGENERATOR" fromString:html];
             NSString* eventvalidation = [self extractValue:@"__EVENTVALIDATION" fromString:html];
-            NSString* eventtarget = @"ctl00%24ctl25%24g_21c2dd5e_fe3f_4841_a6fa_799756a73b7b%24ctl04";
-            if(digest != nil && viewstate != nil && viewgenerator != nil && eventvalidation != nil && eventtarget != nil)
+            NSString* eventtarget1 = [self extractPostParameters1:html];
+            NSString* eventtarget2 = [self extractPostParameters2:html];
+            if(digest != nil && viewstate != nil && viewgenerator != nil && eventvalidation != nil && eventtarget1 != nil)
             {
-                NSString* post = [NSString stringWithFormat:@"MSOWebPartPage_PostbackSource=&MSOTlPn_SelectedWpId=&MSOTlPn_View=0&MSOTlPn_ShowSettings=False&MSOGallery_SelectedLibrary=&MSOGallery_FilterString=&MSOTlPn_Button=none&__EVENTTARGET=%@&__EVENTARGUMENT=0&__REQUESTDIGEST=%@&MSOSPWebPartManager_DisplayModeName=Browse&MSOSPWebPartManager_ExitingDesignMode=false&MSOWebPartPage_Shared=&MSOLayout_LayoutChanges=&MSOLayout_InDesignMode=&_wpSelected=&_wzSelected=&MSOSPWebPartManager_OldDisplayModeName=Browse&MSOSPWebPartManager_StartWebPartEditingName=false&MSOSPWebPartManager_EndWebPartEditing=false&_maintainWorkspaceScrollPosition=0&__VIEWSTATE=%@&__VIEWSTATEGENERATOR=%@&__EVENTVALIDATION=%@&__spDummyText1=&__spDummyText2=&_wpcmWpid=&wpcmVal=", eventtarget, digest, viewstate, viewgenerator, eventvalidation];
+                NSString* post = [NSString stringWithFormat:@"MSOWebPartPage_PostbackSource=&MSOTlPn_SelectedWpId=&MSOTlPn_View=0&MSOTlPn_ShowSettings=False&MSOGallery_SelectedLibrary=&MSOGallery_FilterString=&MSOTlPn_Button=none&__EVENTTARGET=%@&__EVENTARGUMENT=%@&__REQUESTDIGEST=%@&MSOSPWebPartManager_DisplayModeName=Browse&MSOSPWebPartManager_ExitingDesignMode=false&MSOWebPartPage_Shared=&MSOLayout_LayoutChanges=&MSOLayout_InDesignMode=&_wpSelected=&_wzSelected=&MSOSPWebPartManager_OldDisplayModeName=Browse&MSOSPWebPartManager_StartWebPartEditingName=false&MSOSPWebPartManager_EndWebPartEditing=false&_maintainWorkspaceScrollPosition=0&__VIEWSTATE=%@&__VIEWSTATEGENERATOR=%@&__EVENTVALIDATION=%@&__spDummyText1=&__spDummyText2=&_wpcmWpid=&wpcmVal=", eventtarget1, eventtarget2, digest, viewstate, viewgenerator, eventvalidation];
 //                NSString *post = [NSString stringWithFormat: @"groupid=%@&MSOTlPn_SelectedWpId=\"\"&MSOTlPn_View=0&MSOSPWebPartManager_DisplayModeName=Browse&__REQUESTDIGEST=%@&__VIEWSTATE=%@", groupId, digest, viewstate];
                 //[self postRequest:groupId post:post];
             }
@@ -107,6 +134,24 @@
     [postDataTask0 resume];
 }
 
+- (void) loadGroupByName:(NSString*)groupName
+{
+    self.groupName = groupName;
+    
+    // 1. send GET to receiver the page
+    _shouldParse = YES;
+    if(self.configuration == nil) {
+        self.configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    }
+    self.session = [NSURLSession sessionWithConfiguration:self.configuration delegate:self delegateQueue:nil];
+    
+    NSString* link = [[NSString stringWithFormat:@"https://mpei.ru/Education/timetable/Pages/default.aspx?group=%@", groupName] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    NSURL* url0 = [NSURL URLWithString:link];
+    NSURLRequest *request0 = [NSURLRequest requestWithURL:url0];
+    [self.webView loadRequest:request0];
+    return;
+}
+
 - (NSString*) extractValue:(NSString*)name fromString:(NSString*)html
 {
     NSString* template = [NSString stringWithFormat:@"name=\"%@\"", name];
@@ -119,6 +164,42 @@
             if(pos3 != NSNotFound) {
                 NSString* value = [html substringWithRange:NSMakeRange(pos2, pos3-pos2)];
                 return value;
+            }
+        }
+    }
+    return nil;
+}
+
+- (NSString*) extractPostParameters1:(NSString*)html
+{
+    NSInteger begin = [html rangeOfString:@":__doPostBack("].location;
+    if(begin != NSNotFound) {
+        NSInteger begin1 = [html rangeOfString:@"'" options:0 range:NSMakeRange(begin, html.length-begin)].location;
+        if(begin1 != NSNotFound) {
+            begin1 = begin1 + 1;
+            NSInteger end = [html rangeOfString:@"'" options:0 range:NSMakeRange(begin1, html.length-begin1)].location;
+            if(end != NSNotFound) {
+                NSString* value = [html substringWithRange:NSMakeRange(begin1, end-begin1)];
+                return value;
+            }
+        }
+    }
+    return nil;
+}
+- (NSString*) extractPostParameters2:(NSString*)html
+{
+    NSInteger begin = [html rangeOfString:@":__doPostBack("].location;
+    if(begin != NSNotFound) {
+        NSInteger begin0 = [html rangeOfString:@"," options:0 range:NSMakeRange(begin, html.length-begin)].location;
+        if(begin0 != NSNotFound) {
+            NSInteger begin1 = [html rangeOfString:@"'" options:0 range:NSMakeRange(begin0, html.length-begin0)].location;
+            if(begin1 != NSNotFound) {
+                begin1 = begin1 + 1;
+                NSInteger end = [html rangeOfString:@"'" options:0 range:NSMakeRange(begin1, html.length-begin1)].location;
+                if(end != NSNotFound) {
+                    NSString* value = [html substringWithRange:NSMakeRange(begin1, end-begin1)];
+                    return value;
+                }
             }
         }
     }
@@ -265,10 +346,98 @@
 
 - (NSString*) groupNameFileName
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = [self documentDirectory];
     NSString *appFile = [documentsDirectory stringByAppendingPathComponent:@"groupName.plist"];
     return appFile;
 }
+
+- (BOOL) saveHtmlToGroupNameFile:(NSString*)html
+{
+    NSString* htmlPath = [self groupNameFile];
+    if([[NSFileManager defaultManager] fileExistsAtPath:htmlPath]) {
+        NSError* error = nil;
+        [[NSFileManager defaultManager] removeItemAtPath:htmlPath error:&error];
+    }
+    NSError* error2 = nil;
+    BOOL res2 = [html writeToFile:htmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error2];
+    return res2;
+}
+
+- (BOOL) loadHtmlFromGroupNameFile
+{
+    NSString* htmlPath = [self groupNameFile];
+    if([[NSFileManager defaultManager] fileExistsAtPath:htmlPath]) {
+        NSString* html = [NSString stringWithContentsOfFile:htmlPath
+                                                      encoding:NSUTF8StringEncoding
+                                                         error:NULL];
+        if(html != nil && html.length > 0) {
+            NSURL* url0 = [NSURL URLWithString:[NSString stringWithFormat:@"https://mpei.ru/Education/timetable/Pages/table.aspx?group=%@", self.editGroup.text]];
+            [self.webView loadHTMLString:html baseURL:url0];
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (NSString*) groupNameFile
+{
+    NSString *documentsDirectory = [self documentDirectory];
+    NSString* htmlPath = [documentsDirectory stringByAppendingPathComponent:self.editGroup.text];
+    NSLog(@"htmlPath=%@", htmlPath);
+    return htmlPath;
+}
+
+
+
+- (NSString*) documentDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return documentsDirectory;
+}
+
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //Check here if still webview is loding the content
+    if (webView.isLoading)
+        return;
+    
+    if(_shouldSave) {
+        NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+        [self saveHtmlToGroupNameFile:html];
+        _shouldSave = NO;
+    }
+
+    if(_shouldParse) {
+        NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+        NSString* js = [self getPostScript:html];
+        NSString* res = [self.webView stringByEvaluatingJavaScriptFromString:js];
+        NSLog(@"res=%@", res);
+        _shouldSave = YES;
+        _shouldParse = NO;
+        //        NSInteger begin = [html rangeOfString:@"<article"].location;
+        //        if(begin != NSNotFound) {
+        //            NSInteger end = [html rangeOfString:@"</article>"].location;
+        //            if(end != NSNotFound) {
+        //                NSString* article = [html substringWithRange:NSMakeRange(begin, (end-begin)+10)];
+        //                NSURL* url0 = [NSURL URLWithString:[NSString stringWithFormat:@"https://mpei.ru/Education/timetable/Pages/table.aspx?groupid=%@", self.groupId]];
+        //                [self.webView loadHTMLString:article baseURL:url0];
+        //            }
+        //        }
+        //    }
+        
+    }
+    
+//    if(_shouldProcess) {
+//        [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('myGroup').value = '%@'", self.editGroup.text]];
+//        _shouldProcess = NO;
+//        _shouldSave = YES;
+//    }
+    //after code when webview finishes
+    //NSLog(@"Webview loding finished\nyourHTMLSourceCodeString=%@", yourHTMLSourceCodeString);
+}
+
 
 @end
