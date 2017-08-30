@@ -11,7 +11,8 @@
 @interface ViewController : UIViewController <NSURLSessionDelegate, UIWebViewDelegate>
 {
     BOOL _shouldParse;
-    BOOL _shouldProcess;
+    //BOOL _shouldProcess;
+    BOOL _shouldSave;
 }
 @property (weak, nonatomic) IBOutlet UITextField *editGroup;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;

@@ -20,6 +20,7 @@
     NSString* groupName = [self loadGroupName];
     self.editGroup.text = groupName;
     self.webView.delegate = self;
+    [self loadHtmlFromGroupNameFile];
 }
 
 
@@ -345,10 +346,54 @@
 
 - (NSString*) groupNameFileName
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = [self documentDirectory];
     NSString *appFile = [documentsDirectory stringByAppendingPathComponent:@"groupName.plist"];
     return appFile;
+}
+
+- (BOOL) saveHtmlToGroupNameFile:(NSString*)html
+{
+    NSString* htmlPath = [self groupNameFile];
+    if([[NSFileManager defaultManager] fileExistsAtPath:htmlPath]) {
+        NSError* error = nil;
+        [[NSFileManager defaultManager] removeItemAtPath:htmlPath error:&error];
+    }
+    NSError* error2 = nil;
+    BOOL res2 = [html writeToFile:htmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error2];
+    return res2;
+}
+
+- (BOOL) loadHtmlFromGroupNameFile
+{
+    NSString* htmlPath = [self groupNameFile];
+    if([[NSFileManager defaultManager] fileExistsAtPath:htmlPath]) {
+        NSString* html = [NSString stringWithContentsOfFile:htmlPath
+                                                      encoding:NSUTF8StringEncoding
+                                                         error:NULL];
+        if(html != nil && html.length > 0) {
+            NSURL* url0 = [NSURL URLWithString:[NSString stringWithFormat:@"https://mpei.ru/Education/timetable/Pages/table.aspx?group=%@", self.editGroup.text]];
+            [self.webView loadHTMLString:html baseURL:url0];
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (NSString*) groupNameFile
+{
+    NSString *documentsDirectory = [self documentDirectory];
+    NSString* htmlPath = [documentsDirectory stringByAppendingPathComponent:self.editGroup.text];
+    NSLog(@"htmlPath=%@", htmlPath);
+    return htmlPath;
+}
+
+
+
+- (NSString*) documentDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return documentsDirectory;
 }
 
 
@@ -359,29 +404,37 @@
     if (webView.isLoading)
         return;
     
+    if(_shouldSave) {
+        NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+        [self saveHtmlToGroupNameFile:html];
+        _shouldSave = NO;
+    }
+
     if(_shouldParse) {
         NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
         NSString* js = [self getPostScript:html];
         NSString* res = [self.webView stringByEvaluatingJavaScriptFromString:js];
         NSLog(@"res=%@", res);
+        _shouldSave = YES;
+        _shouldParse = NO;
+        //        NSInteger begin = [html rangeOfString:@"<article"].location;
+        //        if(begin != NSNotFound) {
+        //            NSInteger end = [html rangeOfString:@"</article>"].location;
+        //            if(end != NSNotFound) {
+        //                NSString* article = [html substringWithRange:NSMakeRange(begin, (end-begin)+10)];
+        //                NSURL* url0 = [NSURL URLWithString:[NSString stringWithFormat:@"https://mpei.ru/Education/timetable/Pages/table.aspx?groupid=%@", self.groupId]];
+        //                [self.webView loadHTMLString:article baseURL:url0];
+        //            }
+        //        }
+        //    }
+        
     }
     
-//        NSInteger begin = [html rangeOfString:@"<article"].location;
-//        if(begin != NSNotFound) {
-//            NSInteger end = [html rangeOfString:@"</article>"].location;
-//            if(end != NSNotFound) {
-//                NSString* article = [html substringWithRange:NSMakeRange(begin, (end-begin)+10)];
-//                NSURL* url0 = [NSURL URLWithString:[NSString stringWithFormat:@"https://mpei.ru/Education/timetable/Pages/table.aspx?groupid=%@", self.groupId]];
-//                [self.webView loadHTMLString:article baseURL:url0];
-//            }
-//        }
+//    if(_shouldProcess) {
+//        [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('myGroup').value = '%@'", self.editGroup.text]];
+//        _shouldProcess = NO;
+//        _shouldSave = YES;
 //    }
-    _shouldParse = NO;
-    
-    if(_shouldProcess) {
-        [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('myGroup').value = '%@'", self.editGroup.text]];
-        _shouldProcess = NO;
-    }
     //after code when webview finishes
     //NSLog(@"Webview loding finished\nyourHTMLSourceCodeString=%@", yourHTMLSourceCodeString);
 }
