@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D99F7F671F560D0E00017F1D /* mpei_20x20_x2.png in Resources */ = {isa = PBXBuildFile; fileRef = D99F7F661F560D0E00017F1D /* mpei_20x20_x2.png */; };
+		D99F7F6A1F560E4200017F1D /* mpei_20x20_x3.png in Resources */ = {isa = PBXBuildFile; fileRef = D99F7F691F560E4200017F1D /* mpei_20x20_x3.png */; };
+		D99F7F6C1F5611DB00017F1D /* mpei_logo_29x29_x2.png in Resources */ = {isa = PBXBuildFile; fileRef = D99F7F6B1F5611DB00017F1D /* mpei_logo_29x29_x2.png */; };
+		D99F7F6E1F56133000017F1D /* mpei_logo_29x29_x3.png in Resources */ = {isa = PBXBuildFile; fileRef = D99F7F6D1F56133000017F1D /* mpei_logo_29x29_x3.png */; };
+		D99F7F701F5616E500017F1D /* mpei_logo_40x40_x2.png in Resources */ = {isa = PBXBuildFile; fileRef = D99F7F6F1F5616E500017F1D /* mpei_logo_40x40_x2.png */; };
+		D99F7F721F56175A00017F1D /* mpei_logo_40x40_x3.png in Resources */ = {isa = PBXBuildFile; fileRef = D99F7F711F56175A00017F1D /* mpei_logo_40x40_x3.png */; };
+		D99F7F741F56181C00017F1D /* mpei_logo_60x60_x3.png in Resources */ = {isa = PBXBuildFile; fileRef = D99F7F731F56181C00017F1D /* mpei_logo_60x60_x3.png */; };
+		D99F7F761F56185600017F1D /* mpei_logo_20x20_x1.png in Resources */ = {isa = PBXBuildFile; fileRef = D99F7F751F56185600017F1D /* mpei_logo_20x20_x1.png */; };
+		D99F7F781F56188700017F1D /* mpei_logo_29x29_x1.png in Resources */ = {isa = PBXBuildFile; fileRef = D99F7F771F56188700017F1D /* mpei_logo_29x29_x1.png */; };
+		D99F7F7A1F56194A00017F1D /* mpei_logo_40x40_x1.png in Resources */ = {isa = PBXBuildFile; fileRef = D99F7F791F56194A00017F1D /* mpei_logo_40x40_x1.png */; };
 		D9B0756E1F54A26600558772 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0756D1F54A26600558772 /* main.m */; };
 		D9B075711F54A26600558772 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B075701F54A26600558772 /* AppDelegate.m */; };
 		D9B075741F54A26600558772 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B075731F54A26600558772 /* ViewController.m */; };
@@ -36,6 +46,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D99F7F661F560D0E00017F1D /* mpei_20x20_x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mpei_20x20_x2.png; sourceTree = "<group>"; };
+		D99F7F691F560E4200017F1D /* mpei_20x20_x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mpei_20x20_x3.png; sourceTree = "<group>"; };
+		D99F7F6B1F5611DB00017F1D /* mpei_logo_29x29_x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mpei_logo_29x29_x2.png; sourceTree = "<group>"; };
+		D99F7F6D1F56133000017F1D /* mpei_logo_29x29_x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mpei_logo_29x29_x3.png; sourceTree = "<group>"; };
+		D99F7F6F1F5616E500017F1D /* mpei_logo_40x40_x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mpei_logo_40x40_x2.png; sourceTree = "<group>"; };
+		D99F7F711F56175A00017F1D /* mpei_logo_40x40_x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mpei_logo_40x40_x3.png; sourceTree = "<group>"; };
+		D99F7F731F56181C00017F1D /* mpei_logo_60x60_x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mpei_logo_60x60_x3.png; sourceTree = "<group>"; };
+		D99F7F751F56185600017F1D /* mpei_logo_20x20_x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mpei_logo_20x20_x1.png; sourceTree = "<group>"; };
+		D99F7F771F56188700017F1D /* mpei_logo_29x29_x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mpei_logo_29x29_x1.png; sourceTree = "<group>"; };
+		D99F7F791F56194A00017F1D /* mpei_logo_40x40_x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mpei_logo_40x40_x1.png; sourceTree = "<group>"; };
 		D9B075691F54A26600558772 /* MPEITimeTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MPEITimeTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B0756D1F54A26600558772 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D9B0756F1F54A26600558772 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -81,6 +101,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D99F7F681F560D1600017F1D /* logo */ = {
+			isa = PBXGroup;
+			children = (
+				D99F7F751F56185600017F1D /* mpei_logo_20x20_x1.png */,
+				D99F7F661F560D0E00017F1D /* mpei_20x20_x2.png */,
+				D99F7F691F560E4200017F1D /* mpei_20x20_x3.png */,
+				D99F7F771F56188700017F1D /* mpei_logo_29x29_x1.png */,
+				D99F7F6B1F5611DB00017F1D /* mpei_logo_29x29_x2.png */,
+				D99F7F6D1F56133000017F1D /* mpei_logo_29x29_x3.png */,
+				D99F7F791F56194A00017F1D /* mpei_logo_40x40_x1.png */,
+				D99F7F6F1F5616E500017F1D /* mpei_logo_40x40_x2.png */,
+				D99F7F711F56175A00017F1D /* mpei_logo_40x40_x3.png */,
+				D99F7F731F56181C00017F1D /* mpei_logo_60x60_x3.png */,
+			);
+			name = logo;
+			sourceTree = "<group>";
+		};
 		D9B075601F54A26600558772 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +141,7 @@
 		D9B0756B1F54A26600558772 /* MPEITimeTable */ = {
 			isa = PBXGroup;
 			children = (
+				D99F7F681F560D1600017F1D /* logo */,
 				D9B0756F1F54A26600558772 /* AppDelegate.h */,
 				D9B075701F54A26600558772 /* AppDelegate.m */,
 				D9B075721F54A26600558772 /* ViewController.h */,
@@ -254,9 +292,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D99F7F6C1F5611DB00017F1D /* mpei_logo_29x29_x2.png in Resources */,
+				D99F7F781F56188700017F1D /* mpei_logo_29x29_x1.png in Resources */,
+				D99F7F761F56185600017F1D /* mpei_logo_20x20_x1.png in Resources */,
+				D99F7F741F56181C00017F1D /* mpei_logo_60x60_x3.png in Resources */,
 				D9B0757C1F54A26600558772 /* LaunchScreen.storyboard in Resources */,
+				D99F7F7A1F56194A00017F1D /* mpei_logo_40x40_x1.png in Resources */,
+				D99F7F6E1F56133000017F1D /* mpei_logo_29x29_x3.png in Resources */,
+				D99F7F6A1F560E4200017F1D /* mpei_20x20_x3.png in Resources */,
+				D99F7F701F5616E500017F1D /* mpei_logo_40x40_x2.png in Resources */,
 				D9B075791F54A26600558772 /* Assets.xcassets in Resources */,
 				D9B075771F54A26600558772 /* Main.storyboard in Resources */,
+				D99F7F721F56175A00017F1D /* mpei_logo_40x40_x3.png in Resources */,
+				D99F7F671F560D0E00017F1D /* mpei_20x20_x2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +574,7 @@
 				D9B075981F54A26700558772 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D9B075991F54A26700558772 /* Build configuration list for PBXNativeTarget "MPEITimeTableTests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +583,7 @@
 				D9B0759B1F54A26700558772 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D9B0759C1F54A26700558772 /* Build configuration list for PBXNativeTarget "MPEITimeTableUITests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +592,7 @@
 				D9B0759E1F54A26700558772 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
