@@ -1,5 +1,5 @@
 
-// Frases to make speech more interesting
+// phrases to make speech more interesting
 // The 7th of September 2018
 
 // This program can randomly generate some sentencis
@@ -92,7 +92,7 @@ int main(){
     srand(time(NULL));
 
     // Open files:
-    FILE* hiFrases = fopen("Hi.txt","rt");              // Hello frases
+    FILE* hiPhrases = fopen("Hi.txt","rt");              // Hello phrases
     FILE* secondWord = fopen("secondWord.txt","rt");    // After "Hello"
     
     FILE* questions = fopen("Questions.txt","rt");      // Questions for speech
@@ -109,7 +109,7 @@ int main(){
     
     // Now first word of this sentence should be one of this:
     for(i = 0; i < randomWord;i++){
-        fgets(word,64,hiFrases);                // Skip all words before the word we need
+        fgets(word,64,hiPhrases);                // Skip all words before the word we need
     }
     
     puts(word);                                 // Print this random word to the screen
@@ -133,12 +133,12 @@ int main(){
     
     */
     
-    generateWord(hiFrases,3,speech);
+    generateWord(hiPhrases,3,speech);
     generateWord(secondWord,3,speech);
     
     
     // Close all files:
-    fclose(hiFrases);
+    fclose(hiPhrases);
     fclose(secondWord);
     fclose(questions);
     fclose(speech);
