@@ -1,6 +1,7 @@
 # My Raspberry PI projects
 Here is some of my projects
 with Raspberry PI such as:
+
 1. LCD1602 screen data printing
 2 Phrases generator for ESpeak
 3. My PI-based web site
