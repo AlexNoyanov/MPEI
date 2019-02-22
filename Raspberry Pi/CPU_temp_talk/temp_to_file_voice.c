@@ -7,6 +7,10 @@
 // Write temperature to the file
 // Then read it with female voice
 
+// By ALexander Noyanov 
+// Version:2.1
+// Modified: Feb 23 2019
+
 #include <stdio.h>
 
 int main(){
@@ -30,8 +34,8 @@ int main(){
     fclose(fout);                                                       // Close file
     
     system("");   // Read it from file with nice female voice!
-    system("flite -voice slt -t \"My processor temperature is\" ");   // Frase
-    system("flite -voice slt -f \"temp.txt\" ");                        // Temp
+    system("flite -voice slt -t \"My processor temperature is\" ");   // phrase
+    system("flite -voice slt -f \"temp.txt\" ");                      // CPU temperature from the file
     system("flite -voice slt -t \" degrees Celsius\" ");
     
     return 0;
