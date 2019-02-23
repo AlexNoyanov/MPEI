@@ -5,6 +5,12 @@
 //  Created by Александр Ноянов on 23/02/2019.
 //
 
+// To compilate use:
+// g++ PrintData.cpp -o PrintData -lrt -lwiringPi -lwiringPiDev
+
+// How to use: ./PrintData <First string data> <Second string data>
+// Just type what you want to type on each string after ./PrintData
+
 /* 26 October 2017
  
  define from  wiringPi.h                     define from Board DVK5$
