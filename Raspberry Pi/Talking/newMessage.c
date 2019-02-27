@@ -9,8 +9,11 @@
 int main(int argc, const char* argv[])
 {
 // Playing recorded sounds:
+	system("amixer sset 'PCM' 80%");
 	system("aplay /home/pi/Music/Beeps/accept.wav ");
+	system("amixer  sset 'PCM'  90% ");	// Change sound level
 	system("aplay /home/pi/Music/HumanVoices/you_have_a_new_text_message.wav");
+	system("amixer set Mast 30%");
 // Reading message:
 	FILE* f = fopen("textMessage.txt","w");
 
