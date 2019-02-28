@@ -1,0 +1,17 @@
+
+
+// This script can talk the speech
+// as command line argument
+
+// Using Flite
+#include <stdio.h>
+
+using namespace std;
+
+int main(int argc, const char * argv[]){
+    
+    string  speech =   "flite -voice slt -t " + argv[1];
+    system(speech);
+    
+    return 0;
+}
