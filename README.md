@@ -10,9 +10,3 @@ with Raspberry PI :
 
 So, here it is! Feel free to forking, cloning and contributing 
 
-# Printing data on LCD1602 screen
-1.First you need to connect this screen to your Pi
-2.Use code from the following folder
-3.Compile it just like comments says 
-4.Here it is! 
-
