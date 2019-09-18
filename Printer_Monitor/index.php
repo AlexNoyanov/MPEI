@@ -1,24 +1,13 @@
 
 <html>
 <head>
-  
 </head>
 <meta http-equiv = content-type content="text/html; charset=utf-8">
 <body lang = "RU" bgcolor = "#dff2ff">
-    
-    <?php
-        //your PHP code goes here
-        exec("./script 125 70 127 220 0.5 0.4", $out);
-        ?>
-    
-     Hello, today is <?php echo date('l, F jS, Y'); ?>.
-    
     <font color = "#f95e5e">
         <h1 align = 'center'>
-            <b>
-<strong><i> === Raspberry PI 3D printer controll === </strong></i>
-        </b></h1>
-        
+=== Raspberry PI 3D printer controll ===
+        </h1>
 <h1 align = 'center'>
         <img src = "Photos/current.jpg" style="width:600px;height:400px;"  align = 'middle' >
         </img>

@@ -4,12 +4,17 @@
 // September 17 2019
 // By Alex Noyanov 
 
+// Making pictures with current date and time name
+
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <fstream>
+#include <cstring>
 
 using namespace std;
 
+// Getting current date and the time:
 const std::string currentDateTime() {
     time_t     now = time(0);
     struct tm  tstruct;
@@ -22,25 +27,67 @@ const std::string currentDateTime() {
     return buf;
 }
 
-const std::string currentTime(){
-    
-    return buf;
-}
-
 int main()
 {
-    
     string cDate = currentDateTime();
-    string cTime =
+    
+    //FILE* flog = fopen("log.txt","-wt");
+
     cout << "currentDate = " << cDate << endl;
-    system(" echo === Making a picture ===");
-    char* com;
-    string command = "raspistill -o /home/pi/work/Projects/Website/Photos/" + cDate + ".jpg";
-    for(int i = 0; i < command.size()+1;i++){
-        com[i] = command[i];
+    
+    // Cutting the Date part from the string:
+    int k = 0;
+    string date;
+    while(cDate[k] != '.'){
+        date += cDate[k];
+        k++;
     }
     
-    system(com);
-           
+    // Cutting the Time part from the string:
+    string tme;
+    for(int i = k+1; i < cDate.size();i++){
+        tme += cDate[i];
+    }
+    
+    cout << "Time = " << tme << endl;
+    
+    cout << "Date = " << date << endl;
+    
+    system(" echo === Making a picture ===");
+   
+    string picName = date+".jpg";
+
+    // Making command from it:
+    cout << "Picture name:" << picName << endl;
+    string command = "raspistill -o /home/pi/work/Projects/Website/Photos/" + picName ;
+    cout << "Command = " << command << endl;
+    
+    // Converting string to char* format:
+    char* com = new char[command.size()+1];
+    command.copy(com,command.size()+1);
+    com[command.size()] = '\0';
+    
+    cout << com << endl;
+    system(com);    // Photo with name date and time
+    system("raspistill -o /home/pi/work/Projects/Website/Photos/current.jpg");  // Photo current
+    
+//    fprintf(flog,"=== Making picture ===");
+//    fprintf(flog,cDate);
+//    fprintf(flog,tme);
+    
+    ofstream flog;
+    flog.open("log.txt",ios::app);
+    if (flog == 0)
+    {
+        cout << "ERROR opening log file!" << endl;
+        return 1;
+    }
+    else
+    {
+        flog << "=== Making a picture ===" << endl;
+        flog << cDate << endl;
+    }
+    flog.close();
+    
 return 0;
 }
