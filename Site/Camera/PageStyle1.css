@@ -16,10 +16,10 @@ input[type=button], input[type=submit], input[type=reset] {
 /* Форма для заголовка */
 div{
     background-color: #618EEF;
-    width: 550px;
-    height: 50px;
+    width: 770px;
+    height: 25px;
     padding:15px;
-    margin:0 auto;
+    margin:0px auto;
    
     border-radius: 5px;
 }
@@ -28,7 +28,7 @@ p.btitle{
     color:white;
     font-family: "Arial", Helvetica, Sans-serif;
     font-size: 20px;
-    /*margin: 20px;*/
+    margin: 5px;
     font-weight: bold;
     text-align: center;
 }
@@ -36,7 +36,7 @@ p.btitle{
 img.pic{
     width:800px;
     height:600px;
-    margin-top:10;
+    
 }
 
 
