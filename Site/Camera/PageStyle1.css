@@ -21,6 +21,8 @@ div{
     padding:15px;
     margin:0px auto;
    
+   margin-bottom:8px;
+   
     border-radius: 5px;
 }
 /* Большой верхий заголовок*/
@@ -28,7 +30,7 @@ p.btitle{
     color:white;
     font-family: "Arial", Helvetica, Sans-serif;
     font-size: 20px;
-    margin: 5px;
+    margin: 0px;
     font-weight: bold;
     text-align: center;
 }
