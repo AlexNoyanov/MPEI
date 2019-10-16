@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>buttonTest</title>
+    <link rel="stylesheet" href="mainStyle.css"> <!-- Using main style for this page -->
+        
+        <!-- PHP script here: -->
+        <?php
+            echo "Are you sure you want to do this?  Type 'yes' to continue: ";
+            $handle = fopen ("php://stdin","r");
+            $line = fgets($handle);
+            if(trim($line) != 'yes'){
+                echo "ABORTING!\n";
+                exit;
+                alert("Script is running!");
+            }
+        echo "\n";
+        echo "Thank you, continuing...\n";
+            ?>
+        
+        <!-- Running clock code: -->
+        <script type="text/javascript">
+            function display_c(){
+                var refresh=1000; // Refresh rate in milli seconds
+                mytime=setTimeout('display_ct()',refresh)
+            }
+        
+        function display_ct() {
+            var x = new Date()
+            document.getElementById('ct').innerHTML = x;
+            display_c();
+        }
+        </script>
+        
+  </head>
+
+  <body align = "center" bgcolor = "black"  onload=display_ct();>
+      <p class = "btitle" id = "ct"> </p>
+   <!-- Top head label -->
+   <div> <p class = "btitle">
+   Running PHP in command line test
+   </p></div>
+   <!-- PHP logo-->
+   <img class = "logos" src="phpLogo.png" alt="PHP logo">
+   <br>
+   <!--  Button -->
+   <input  type = 'submit' value = 'Run script!' onClick="window.location.reload();" >
+   </input>
+   
+   <p class = "btitle">Hello, today is <?php echo date('l, F jS, Y'); ?>. </p>
+   <p class = "btitle">
+   <?php for($i=1;$i<=5;$i++){ ?>
+   <li>Menu Item <?php echo $i; ?></li>
+   <?php } ?>
+   </p>
+   
+   <div> <p class = "btitle">
+       Running JavaScript
+       </p></div>
+   <!-- JavaScript code here -->
+   <script>
+       function myFunction() {
+           // Changing label color on this html page
+           document.getElementById("demo").style.fontSize = "25px";
+           document.getElementById("demo").style.color = "red";
+           document.getElementById("demo").style.backgroundColor = "yellow";
+       }
+
+   
+   function showDate(){
+       // Showing current date:
+       var today = new Date();
+       var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+   }
+   
+   function showTime(){
+       
+   }
+   </script>
+   
+   <script type="text/javascript" src="ChangeStyle.js"></script>
+   
+   <!-- JavaScript logo-->
+   <img class = "log2" src="JavaScriptLogo.png" alt="PHP logo">
+       <br>
+   <strong><p id="demo">JavaScript can change the style of an HTML element.</p></strong>
+   <input  type = 'submit' value = 'Run script!' onClick = "myFunction()" >
+       
+        <input  type = 'submit' value = 'Run script from another file!' onClick = "changeStyle()" >
+   </input>
+   <br>
+   <!-- Reload page button -->
+       <br>
+       <button class = "r1" type="submit" onClick="window.location.reload();" >
+           <img src="refresh.PNG" width="50" height="50" alt="submit" />
+       </button>
+       
+       <!-- Printing date and time: -->
+       <p id = "dateLabel" > </p>
+       <p class = "btitle">
+       Page was reloaded:
+       <script>
+           document.write(Date());
+           
+           </script>
+       <p>
+       
+    </body>
+  
+</html>
