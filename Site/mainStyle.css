@@ -1,4 +1,3 @@
-strong {color: red;}
 
 /* Кнопка */
 input[type=button], input[type=submit], input[type=reset] {
@@ -80,8 +79,8 @@ input.f1[type="text"] {    /* Поле ввода имени */
 input.f2[type = "text"]{   /* Поле ввода фамилии */
     width: 400PX;
     display: block;
-    background:white; /* Цвет поля ввода */
-    color:black;      /* Цвет текста */
+    background:white;     /* Цвет поля ввода */
+    color:black;          /* Цвет текста */
     margin-left: 40px;      /* Сдвиг вправо */
                        
     text-align:justiy;
