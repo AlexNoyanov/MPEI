@@ -11,16 +11,19 @@
 
 <body bgcolor = "silver">
     <center>
-    <h1><div class = "title">
+        
+    <p><h1><div class = "title">
         Printing messages on LCD screen
-    </div></h1>
+        <img  class = "piLogo"src = "rpi-logo.png" align="top"></img>
+       
+    </div></h1></p>
     <br><br>
     <div class = "lcdPCB">
         <div class = "lcdFrame">
             <div class = "blueLCD">
                 <!-- input fields here:-->
-                <form name = "input" action = "http://193.233.69.42:15980/testvvk/test_control.php" method = "post" > <!-- action- Адрес, куда отправлять method-get или post                         -->
-                        <!-- <p class = 'light'> Имя </p> -->
+                <form name = "input" action = "http://193.233.69.42:15980/testvvk/test_control.php" method = "post" > <!-- action- Adress, where to send data from this forms method-get или post                         -->
+                        <!-- <p class = 'light'> Name </p> -->
                     <!-- LCD String 1 -->
                     <input  class = "blueLCDField" type = 'text' value = '' name = 'prm1'>
                     </input>
@@ -36,7 +39,8 @@
         </div>
      </div>
     </div>
-
-    
     </center>
+    
+    
+    
 </body>
