@@ -1,0 +1,42 @@
+
+    <!-- Page for printing messages on Raspberry PI LCD -->
+    <!-- October 30 2019, Moscow -->
+
+<html>
+    
+<head>
+        <!-- Stylization-->
+   <link rel="stylesheet" href="Style1-Rpbry.css">
+</head>
+
+<body bgcolor = "silver">
+    <center>
+    <h1><div class = "title">
+        Printing messages on LCD screen
+    </div></h1>
+    <br><br>
+    <div class = "lcdPCB">
+        <div class = "lcdFrame">
+            <div class = "blueLCD">
+                <!-- input fields here:-->
+                <form name = "input" action = "http://193.233.69.42:15980/testvvk/test_control.php" method = "post" > <!-- action- Адрес, куда отправлять method-get или post                         -->
+                        <!-- <p class = 'light'> Имя </p> -->
+                    <!-- LCD String 1 -->
+                    <input  class = "blueLCDField" type = 'text' value = '' name = 'prm1'>
+                    </input>
+                        <!-- <p class = 'light'>  Фамилия </p> -->
+                    <!-- LCD String 2 -->
+                    <input  class = "blueLCDField" type = 'text' value = '' name = 'prm2'>
+                    </input>
+                    
+                    <!--  Button
+                    <input  type = 'submit' value = 'Send text' >
+                    </input> -->
+                </form>
+        </div>
+     </div>
+    </div>
+
+    
+    </center>
+</body>
