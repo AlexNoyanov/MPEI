@@ -19,10 +19,10 @@ input[type=button], input[type=submit], input[type=reset] {
 div.title{
     background-color:grey ;
     width: 750px;
-    height: 50px;
-    padding:15px;
+    height: 60px;
+    padding:5px;
     color: white;
-    margin-top: 0px;
+    margin-top: 10px;
     border-radius:35px;
     font-family: Tahoma;        /* Стиль шрифта */
 }
@@ -43,7 +43,7 @@ div.lcdPCB{
     height: 180px;
     padding:15px;
    
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 div.lcdFrame{
@@ -60,8 +60,21 @@ p.btitle{
     color:white;
     font-family: "Arial", Helvetica, Sans-serif;
     font-size: 20px;
-    margin: 20px;
+    margin-top: 0px;
     font-weight: bold;
+}
+
+p.mainText{
+    background-color:white;
+    width: 750px;
+    height: 750px;
+    padding:15px;
+    color: darkblue;
+    margin-top: 0px;
+    border-radius:15px;
+    font-family: Tahoma;        /* Стиль шрифта */
+    font-size: 20px;
+    
 }
 
 /* Стиль для маленьких шрифтов */
@@ -93,18 +106,21 @@ input.f1[type="text"] {    /* Поле ввода имени */
       0px 2px 0px 0px red; /* <Х,У, размытие, тольщина рамки, цвет>*/
       /*-5px 0px 0px 5px blue;*/
   }
+  p.MainTitle{
+  margin-top:15px;
+  }
   
   /* Поле ввода 1*/
 input.blueLCDField[type="text"] {    /* Blue LCD Input field*/
       width: 450PX;
       display: block;
       background:#618EFF;     /* Цвет поля ввода */
-      color:white;          /* Цвет текста */
+      color:white;            /* Цвет текста */
       text-align:justiy;
       font-size: 200%;
       font-family: Tahoma;        /* Стиль шрифта */
       border: 2px solid #39c;      /* Рамка  */
-      
+      margin-top:0px;
       /*padding:30px; */
      /* margin-left:40px;
       
@@ -113,9 +129,34 @@ input.blueLCDField[type="text"] {    /* Blue LCD Input field*/
       /*-5px 0px 0px 5px blue;*/
   }
   
+  input.blueLCDField2[type="text"] {    /* Blue LCD Input field*/
+      width: 450PX;
+      display: block;
+      background:#618EFF;     /* Цвет поля ввода */
+      color:white;          /* Цвет текста */
+      text-align:justiy;
+      font-size: 200%;
+      font-family: Tahoma;        /* Стиль шрифта */
+      border: 2px solid #39c;      /* Рамка  */
+      margin-bottom:10px;
+      /*padding:30px; */
+      /* margin-left:40px;
+      /*box-shadow:
+      0px 2px 0px 0px red; /* <Х,У, размытие, тольщина рамки, цвет>*/
+      /*-5px 0px 0px 5px blue;*/
+  }
+  
+  
   img.piLogo{				/* Raspberry PI logo*/
-  width:55px;
-  height:50px;
+  width:75px;
+  height:70px;
+  margin-bottom:20px;
+  margin-top:0px;
+  }
+  
+  img.connection{
+  width:500;
+  height:600;
   }
   
 input.f2[type = "text"]{   /* Поле ввода фамилии */
