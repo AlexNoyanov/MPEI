@@ -1,4 +1,4 @@
-strong {color: red;}
+
 
 /* Кнопка */
 input[type=button], input[type=submit], input[type=reset] {
@@ -19,10 +19,11 @@ input[type=button], input[type=submit], input[type=reset] {
 div.title{
     background-color:grey ;
     width: 750px;
-    height: 60px;
+    height: 65px;
     padding:5px;
     color: white;
-    margin-top: 10px;
+    margin-top: 0px;
+    margin-bottom:0px;
     border-radius:35px;
     font-family: Tahoma;        /* Стиль шрифта */
 }
@@ -67,7 +68,7 @@ p.btitle{
 p.mainText{
     background-color:white;
     width: 750px;
-    height: 750px;
+    height: 950px;
     padding:15px;
     color: darkblue;
     margin-top: 0px;
@@ -107,7 +108,8 @@ input.f1[type="text"] {    /* Поле ввода имени */
       /*-5px 0px 0px 5px blue;*/
   }
   p.MainTitle{
-  margin-top:15px;
+  margin-top:0px;
+  font-size:30px;
   }
   
   /* Поле ввода 1*/
@@ -150,13 +152,21 @@ input.blueLCDField[type="text"] {    /* Blue LCD Input field*/
   img.piLogo{				/* Raspberry PI logo*/
   width:75px;
   height:70px;
-  margin-bottom:20px;
+  margin-bottom:10px;
   margin-top:0px;
+  padding:0px;
   }
   
   img.connection{
   width:500;
   height:600;
+  margin-top:10px;
+  }
+  
+  img.apacheRpi{
+  width:750;
+  height:200;
+  margin-top:10px;
   }
   
 input.f2[type = "text"]{   /* Поле ввода фамилии */
