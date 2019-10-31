@@ -28,6 +28,30 @@ div.title{
     font-family: Tahoma;        /* Стиль шрифта */
 }
 
+div.title2{
+    background-color:grey ;
+    width: 100%;
+    height: 65px;
+    padding:0px;
+    color: white;
+    margin-top: 0px;
+    margin-bottom:0px;
+    border-radius:15px;
+    font-family: Tahoma;        /* Стиль шрифта */
+}
+
+div.titleAbout{
+    background-color:grey ;
+    width: 770px;
+    height: 50px;
+    padding:5px;
+    color: white;
+    margin-top: 0px;
+    margin-bottom:0px;
+    border-radius:15px;
+    font-family: Tahoma;        /* Стиль шрифта */
+}
+
 div.blueLCD{
     background-color: #618EFF; /* LCD Screen*/
     width: 450px;
