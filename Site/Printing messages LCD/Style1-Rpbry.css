@@ -137,7 +137,7 @@ input.f1[type="text"] {    /* Поле ввода имени */
   }
   
   /* Поле ввода 1*/
-input.blueLCDField[type="text"] {    /* Blue LCD Input field*/
+input.blueLCDField[type='text'] {    /* Blue LCD Input field*/
       width: 450PX;
       display: block;
       background:#618EFF;     /* Цвет поля ввода */
