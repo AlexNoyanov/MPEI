@@ -22,8 +22,8 @@ while True:
         values['last_message_id'] = response['items'][0]['id']
     for item in response['items']:
         text = item['body']
-            if (text in helloWrods) :
-                 write_msg(item[u'user_id'],u'привет')
+         if text in helloWords :
+            write_msg(item[u'user_id'],u'привет')
                      
        # if text == 'Hello':
         #    write_msg(item[u'user_id'], item['Hello hruk!'])
