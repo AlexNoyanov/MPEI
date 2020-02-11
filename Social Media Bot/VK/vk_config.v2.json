@@ -18,7 +18,7 @@
           "HttpOnly": null
         },
         "rfc2109": false,
-        "secure": false,
+        "secure": true,
         "value": "1",
         "version": 0
       },
@@ -61,7 +61,7 @@
         },
         "rfc2109": false,
         "secure": true,
-        "value": "473fda17d18075b4a4a3734d97d06f567dc8fb7bee8c379f6b9ae",
+        "value": "bf480307e920378618da9e5794b27ebcf18b15a5504f5138acd0634fcf266",
         "version": 0
       },
       {
@@ -117,10 +117,12 @@
         "path_specified": true,
         "port": null,
         "port_specified": false,
-        "rest": {},
+        "rest": {
+          "HttpOnly": null
+        },
         "rfc2109": false,
         "secure": true,
-        "value": "34506072f06f17e41fd4384049983dd2aa5c88df9f73ce5a6cf19",
+        "value": "32e1e5d7a86ff602aceb62e1adae45ff05f6af1d074d43ebafb1d382c5e86",
         "version": 0
       },
       {
@@ -138,8 +140,8 @@
         "port_specified": false,
         "rest": {},
         "rfc2109": false,
-        "secure": false,
-        "value": "790714089_9b212b5c9318442963",
+        "secure": true,
+        "value": "1614734348_9e9d223ab4cad3b8c1",
         "version": 0
       },
       {
@@ -160,12 +162,18 @@
         },
         "rfc2109": false,
         "secure": true,
-        "value": "Y2U2OWUxNTBlZGM5NzUwZmI4MTBiOGY4",
+        "value": "ODk3YWQ3ZmFlMjU4MzAwMDJjOGU3NWQx",
         "version": 0
       }
     ],
     "token": {
-      "app6222115": {}
+      "app6222115": {
+        "scope_140492255": {
+          "access_token": "ac210614bb58cf15ab8b1552c7786c95f7c7a3e1a4b7d900108010d0f4a7f7e6ff89e51ffe02e07ce315a",
+          "expires_in": "0",
+          "user_id": "442085768"
+        }
+      }
     }
   }
 }
