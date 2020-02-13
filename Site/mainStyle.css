@@ -1,6 +1,6 @@
 
 /* Кнопка */
-input[type=button], input[type=submit], input[type=reset] {
+input.r1[type=button], input[type=submit], input[type=reset] {
     background-color: lightgreen; /*#618EEF;*/
   border: none;
   color: white;
