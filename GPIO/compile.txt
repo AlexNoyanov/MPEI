@@ -1,0 +1,3 @@
+To compile this code on your Raspberry PI you need to install 
+WiringPI library first and use this command:
+gcc ledBlinking.c -o ledBlinking -lwiringPi
